@@ -1,0 +1,15 @@
+---
+# Config file settings
+
+vmevict_enable_debug: false
+vmevict_check_interval: 60
+
+vmevict_evict_files:
+  - "/var/log/tomcat/"
+
+vmevict_evict_threshold_percentile: 0.3
+vmevict_evict_threshold_size: 1100000000
+
+# vmevict settings
+vmevict_conf_path: "/etc/vmevict/config.yaml"
+vmevict_script_dir: "/usr/local/vmevict/"

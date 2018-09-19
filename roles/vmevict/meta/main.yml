@@ -1,0 +1,11 @@
+---
+galaxy_info:
+  author: cleargray@gmail.com
+  description: install vmevict
+  license: license GPLv2
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+dependencies: []

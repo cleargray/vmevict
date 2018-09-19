@@ -1,0 +1,8 @@
+---
+
+- name: vmevict restart
+  systemd:
+    name: vmevict
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

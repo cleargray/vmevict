@@ -1,0 +1,15 @@
+[Unit]
+Description=Service for eviction FS buffers from memory
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory={{ vmevict_script_dir }}
+ExecStart=/usr/bin/python3 {{ vmevict_script_dir }}vmevict.py {{ vmevict_conf_path }}
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

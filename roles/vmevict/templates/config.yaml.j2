@@ -1,0 +1,19 @@
+---
+# Daemon settings:
+# Enabling verbose log output
+EnableDebug: {{ vmevict_enable_debug }}
+
+# memory.stats cheking interval in seconds. Default 60
+CheckInterval: {{ vmevict_check_interval }}
+# Files and dirs for eviction
+
+EvictFiles:
+{% for path in vmevict_evict_files %}
+  - "{{ path }}"
+{% endfor %}
+
+# Could be percentile (0.0 - 1.0) or size in bytes
+# If both is enbled, when will work first reached treshold
+
+EvictTresholdPercentile: {{ vmevict_evict_threshold_percentile }}
+#EvictTresholdSize: {{ vmevict_evict_threshold_size }}

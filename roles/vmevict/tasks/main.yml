@@ -1,0 +1,47 @@
+---
+- name: create need dirs
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - '/usr/local/vmevict'
+    - '/etc/vmevict'
+  tags:
+    - vmevict
+    - vmevict_dirs
+
+- name: generate config file
+  template:
+    src: 'config.yaml.j2'
+    dest: '{{ vmevict_conf_path }}'
+    owner: root
+    group: root
+    mode: 0644
+  notify: vmevict restart
+  tags:
+    - vmevict
+    - vmevict_config
+
+- name: install vmevict script
+  copy:
+    src: 'files/vmevict.py'
+    dest: '{{ vmevict_script_dir }}/vmevict.py'
+    owner: root
+    group: root
+    mode: 0744
+  notify: vmevict restart
+  tags:
+    - vmevict
+    - vmevict_script
+
+- name: install vmevict systemd unit
+  template:
+    src: 'vmevict.service.j2'
+    dest: '/etc/systemd/system/vmevict.service'
+    owner: root
+    group: root
+    mode: 0644
+  notify: vmevict restart
+  tags:
+    - vmevict
+    - vmevict_unit
